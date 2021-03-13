@@ -9,6 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "engines": {"node": "12.x","npm": "6.x" },
   "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "~0.1100.5",
