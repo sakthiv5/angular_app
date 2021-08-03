@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AddressService } from '../../src/address-service.service';
 
 @Component({
   selector: 'app-ag-grid',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ag-grid.component.css']
 })
 export class AgGridComponent implements OnInit {
-
-  constructor() { }
+  constructor(
+    public addressservice:AddressService
+    ) { }
 
   columnDefs = [
     { field: 'make' },
@@ -15,13 +17,15 @@ export class AgGridComponent implements OnInit {
     { field: 'price'}
 ];
 
-rowData = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 }
-];
+rowData : any;
 
   ngOnInit(): void {
+    this.loadEmployees();
   }
 
+loadEmployees() {
+  return this.addressservice.getEmployees().subscribe((data: {}) => {
+    this.rowData = data;
+  })
+}
 }

@@ -8,6 +8,8 @@ import { TrainBotComponent } from './train-bot/train-bot.component';
 import { HomeComponent } from './home/home.component';
 import { AgGridComponent } from './common/ag-grid/ag-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { HttpClientModule } from '@angular/common/http';
+import { AddressService } from './src/address-service.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { AgGridModule } from 'ag-grid-angular';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
@@ -26,7 +29,7 @@ import { AgGridModule } from 'ag-grid-angular';
       { path: 'train-bot', component: TrainBotComponent },
     ])
   ],
-  providers: [],
+  providers: [AddressService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
