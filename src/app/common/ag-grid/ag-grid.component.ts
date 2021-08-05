@@ -12,20 +12,25 @@ export class AgGridComponent implements OnInit {
     ) { }
 
   columnDefs = [
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price'}
+    { field: 'id' },
+    { field: 'address' }
 ];
 
 rowData : any;
+tokenDetails : any;
+
+formdata = new FormData();
 
   ngOnInit(): void {
-    this.loadEmployees();
+    this.loadAddress("64223740205");
   }
 
-loadEmployees() {
-  return this.addressservice.getEmployees().subscribe((data: {}) => {
+loadAddress(phoneNumber) {
+  return this.addressservice.getAddress(phoneNumber).subscribe((data: any) => {
     this.rowData = data;
+    console.log(this.rowData);
   })
 }
+
+
 }

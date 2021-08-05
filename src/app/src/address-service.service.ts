@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AgGridComponent } from '../common/ag-grid/ag-grid.component';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,9 @@ import { retry, catchError } from 'rxjs/operators';
 export class AddressService {
   
   // Define API
-  apiURL = 'https://www.alphavantage.co';
-
+  apiURL = 'http://192.168.178.99:5000';
+  
+  
   constructor(private http: HttpClient) { }
 
   /*========================================
@@ -20,20 +21,28 @@ export class AddressService {
   =========================================*/
 
   // Http Options
-  httpOptions = {
+   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }  
+      'Accept': 'text/plain',
+      'Content-Type': 'text/plain'      
+    }),
+    'responseType': 'text'    
+  };
 
   // HttpClient API get() method => Fetch employees list
-  getEmployees(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo')
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
+  getAddress(phoneNumber) {
+    return this.http.get(this.apiURL + '/getaddress?phone=' + phoneNumber, {'responseType': 'text'});
+  
   }
+
+
+  // getToken(param): Observable<any> {
+  //   return this.http.post<any>(this.url + '/portal/sharing/rest/generateToken',param, this.httpOptions)
+  //   .pipe(
+  //     retry(1),
+  //     catchError(this.handleError)
+  //   )
+  // }  
 
   // Error handling 
   handleError(error) {
