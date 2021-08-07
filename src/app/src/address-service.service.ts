@@ -11,7 +11,7 @@ import { retry, catchError, map } from 'rxjs/operators';
 export class AddressService {
   
   // Define API
-  apiURL = 'http://192.168.178.99:5000';
+  apiURL = 'https://n6xqrwbvof.execute-api.ap-southeast-2.amazonaws.com';
   
   
   constructor(private http: HttpClient) { }
@@ -21,18 +21,22 @@ export class AddressService {
   =========================================*/
 
   // Http Options
-   httpOptions = {
+
+  httpOptions = {
     headers: new HttpHeaders({
-      'Accept': 'text/plain',
-      'Content-Type': 'text/plain'      
-    }),
-    'responseType': 'text'    
+     }),
+    'Origin': 'http://localhost:4200'    
   };
 
   // HttpClient API get() method => Fetch employees list
   getAddress(phoneNumber) {
-    return this.http.get(this.apiURL + '/getaddress?phone=' + phoneNumber, {'responseType': 'text'});
-  
+    return this.http.post(this.apiURL + '/dev/address', phoneNumber);
+
+  }
+
+  deleteAddress(objectID) {
+    return this.http.post(this.apiURL + '/dev/deleteaddress', objectID);
+
   }
 
 

@@ -10,6 +10,7 @@ import { AgGridComponent } from './common/ag-grid/ag-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { AddressService } from './src/address-service.service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +19,17 @@ import { AddressService } from './src/address-service.service';
     ChatComponent,
     TrainBotComponent,
     AgGridComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
-      { path: 'home', component: HomeComponent },
+      { path: 'lol', component: HomeComponent },
       { path: 'chat', component: ChatComponent },
-      { path: 'train-bot', component: TrainBotComponent },
+      { path: 'home', component: TrainBotComponent },
+      { path: 'error', component: ErrorComponent },
     ])
   ],
   providers: [AddressService],

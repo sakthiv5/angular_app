@@ -15,13 +15,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "~12.1.4",
-    "@angular/cli": "12.1.4",
-    "@angular/compiler-cli": "12.1.4",
-    "typescript": "4.3.5",
+    "@angular-devkit/build-angular": "^12.1.4",
     "@angular/animations": "~12.1.4",
+    "@angular/cli": "12.1.4",
     "@angular/common": "~12.1.4",
     "@angular/compiler": "~12.1.4",
+    "@angular/compiler-cli": "12.1.4",
     "@angular/core": "~12.1.4",
     "@angular/forms": "^12.1.4",
     "@angular/platform-browser": "~12.1.4",
@@ -34,6 +33,7 @@
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
     "tslib": "^2.0.0",
+    "typescript": "4.3.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

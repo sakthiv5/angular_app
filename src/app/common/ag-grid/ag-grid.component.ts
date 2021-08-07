@@ -12,25 +12,34 @@ export class AgGridComponent implements OnInit {
     ) { }
 
   columnDefs = [
-    { field: 'id' },
-    { field: 'address' }
+    {headerName: 'Selection', field: 'selection', cellRenderer: 'checkboxRenderer',checkboxSelection : true,resizable:true},
+    {headerName: 'ID', field: 'id',resizable:true},
+    {headerName: 'Address', field: 'address',resizable:true}
 ];
+
+phoneNumber = {'phone':64223740205};
 
 rowData : any;
 tokenDetails : any;
-
 formdata = new FormData();
-
   ngOnInit(): void {
-    this.loadAddress("64223740205");
+    this.loadAddress(this.phoneNumber);
   }
+
 
 loadAddress(phoneNumber) {
   return this.addressservice.getAddress(phoneNumber).subscribe((data: any) => {
-    this.rowData = data;
-    console.log(this.rowData);
+    this.rowData = JSON. parse(data);
   })
 }
+
+// objectId = "7,8"
+
+// deleteAddress(objectId) {
+//   return this.addressservice.deleteAddress(objectId).subscribe((data: any) => {
+//     this.rowData = "";
+//   })
+// }
 
 
 }
